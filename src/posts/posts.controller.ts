@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
 
 @Controller('posts')
@@ -6,8 +14,13 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  getPost(@Param('id') id: string) {
-    return this.postsService.getPostById(+id);
+  getPosts() {
+    return this.postsService.getAllPosts();
+  }
+
+  @Get(':id')
+  getPost(@Param('id', ParseIntPipe) id: number) {
+    return this.postsService.getPostById(id);
   }
 
   @Post()
@@ -17,5 +30,14 @@ export class PostsController {
     @Body('content') content: string,
   ) {
     return this.postsService.createPost(authorId, title, content);
+  }
+
+  @Put(':id')
+  putPost(
+    @Param('id') id: string,
+    @Body('title') title?: string,
+    @Body('content') content?: string,
+  ) {
+    return this.postsService.updatePost(+id, title, content);
   }
 }

@@ -6,6 +6,13 @@ export class PostsModel {
   @PrimaryGeneratedColumn()
   id: number;
 
+  // 1) UsersModel 과 연동한다. FK 이용해서
+  // 2) null이 될 수 없다.
+  @ManyToOne(() => UsersModel, (user) => user.posts, {
+    nullable: false,
+  })
+  author: UsersModel;
+
   @Column()
   title: string;
 
@@ -13,16 +20,8 @@ export class PostsModel {
   content: string;
 
   @Column()
-  tag: string;
-
-  @Column()
   likeCount: number;
 
   @Column()
   commentCount: number;
-
-  @ManyToOne(() => UsersModel, (user) => user.posts, {
-    nullable: false,
-  })
-  author: UsersModel;
 }

@@ -1,17 +1,25 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { RolesEnum } from '../const/roles.enum';
 import { PostsModel } from '../../posts/entities/posts.entity';
-import { RolesEnum } from '../const/users.const';
 
 @Entity()
 export class UsersModel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  email: string;
-
-  @Column()
+  @Column({
+    length: 20,
+    unique: true,
+  })
+  // 길이가 20을 넘지 않을 것
+  // 유일무이한 값이 될 것
   nickname: string;
+
+  @Column({
+    unique: true,
+  })
+  // 유일무이한 값이 될 것
+  email: string;
 
   @Column()
   password: string;
