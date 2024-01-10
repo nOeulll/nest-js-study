@@ -21,7 +21,7 @@ import { CommonModule } from './common/common.module';
       host: '127.0.0.1',
       username: 'postgres',
       password: 'postgres',
-      database: 'typeormstudy',
+      database: 'postgres',
       entities: [UsersModel, PostsModel],
       synchronize: true,
     }),
