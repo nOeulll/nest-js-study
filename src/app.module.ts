@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 import { UsersModel } from './users/entities/users.entity';
 import { PostsModel } from './posts/entities/posts.entity';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { PostsModel } from './posts/entities/posts.entity';
     AuthModule,
     UsersModule,
     PostsModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
