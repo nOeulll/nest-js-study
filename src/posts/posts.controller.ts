@@ -5,10 +5,12 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
-  Put,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
+import { CreatePostDto } from './dto/create-post.dto';
+import { UpdatePostDto } from './dto/update-post.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -27,19 +29,19 @@ export class PostsController {
   @Post()
   postPosts(
     @Body('authorId') authorId: number,
-    @Body('title') title: string,
-    @Body('content') content: string,
+    @Body() body: CreatePostDto,
     @Body('isPublic', new DefaultValuePipe(true)) isPublic: boolean,
   ) {
-    return this.postsService.createPost(authorId, title, content);
+    return this.postsService.createPost(authorId, body);
   }
 
-  @Put(':id')
+  @Patch(':id')
   putPost(
     @Param('id') id: string,
-    @Body('title') title?: string,
-    @Body('content') content?: string,
+    @Body() body: UpdatePostDto,
+    // @Body('title') title?: string,
+    // @Body('content') content?: string,
   ) {
-    return this.postsService.updatePost(+id, title, content);
+    return this.postsService.updatePost(+id, body);
   }
 }
