@@ -1,6 +1,5 @@
 import { Body, Controller, Post, Headers } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { MaxLengthPipe, MinLengthPipe } from './pipe/password.pipe';
 import { RegisterUserDto } from './dto/register-user.dto';
 
 @Controller('auth')
