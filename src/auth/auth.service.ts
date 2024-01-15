@@ -12,7 +12,7 @@ import { ConfigService } from '@nestjs/config';
 import {
   ENV_HASH_ROUNDS_KEY,
   ENV_JWT_SECRET_KEY,
-} from '../common/env-keys.const';
+} from '../common/const/env-keys.const';
 
 @Injectable()
 export class AuthService {
